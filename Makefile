@@ -1,8 +1,8 @@
-
-HOST=127.0.0.1
+SHELL := /usr/bin/zsh
 
 init:
-	pip3 install -r requirements.txt
+	@[[ ! -d venv ]] && python3 -m virtualenv venv || :
+	@venv/bin/pip3 install -r requirements.txt
 
 clean:
 	@find . -name '*.pyc' -exec rm -f {} +
@@ -10,3 +10,6 @@ clean:
 
 test: clean
 	@venv/bin/python3 tests/main.py
+
+run:
+	@venv/bin/python3 main.py
